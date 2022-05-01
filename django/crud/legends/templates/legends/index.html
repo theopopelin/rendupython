@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our legends</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            text-align: center;
+        }
+        
+    </style>
+</head>
+<body>
+    <h1>List of legends</h1><hr>
+    <a href="{% url 'legends:add' %}" style="float:right;">Add New legend</a>
+    <div style="clear:both;"></div><br>
+    <table style="width: 100%;">
+        <thead>
+            <td>First Name</td>
+            <td>Last Name</td>
+            <td>Age</td>
+            <td colspan="2">Actions</td>
+        </thead>
+        <tbody>
+            {% for legend in legends %}
+            <tr>
+                <td>{{legend.first_name}}</td>
+                <td>{{legend.last_name}}</td>
+                <td>{{legend.age}}</td>
+                <td><a href="{% url 'legends:edit' legend.id %}">edit</a></td>
+                <td><a href="{% url 'legends:delete' legend.id %}">delete</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
